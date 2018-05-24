@@ -11,7 +11,7 @@ public class Stuff : PooledObject  {
 
 	void Awake () {
 		Body = GetComponent<Rigidbody>();
-		DontDestroyOnLoad (this);
+		//DontDestroyOnLoad (this);
 		meshRenderers = GetComponentsInChildren<MeshRenderer>();
 	}
 
