@@ -11,8 +11,16 @@ public class Stuff : PooledObject  {
 
 	void Awake () {
 		Body = GetComponent<Rigidbody>();
+		DontDestroyOnLoad (this);
 		meshRenderers = GetComponentsInChildren<MeshRenderer>();
 	}
+
+	/*
+	void OnLevelWasLoaded()
+	{
+		ReturnToPool ();
+	}
+	*/
 
 	void OnTriggerEnter (Collider enteredCollider) {
 		if (enteredCollider.CompareTag("KillZone")) {
@@ -27,6 +35,9 @@ public class Stuff : PooledObject  {
 		}
 	}
 
-
+	public void OnDestroy()
+	{
+		Debug.Log ("Destroying PooledObject");
+	}
 
 }

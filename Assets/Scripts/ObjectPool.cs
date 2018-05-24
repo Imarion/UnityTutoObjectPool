@@ -32,7 +32,7 @@ public class ObjectPool : MonoBehaviour {
 	public static ObjectPool GetPool (PooledObject prefab) {
 		GameObject obj;  // = new GameObject(prefab.name + " Pool");
 		ObjectPool pool; // = obj.AddComponent<ObjectPool>();
-		/*
+
 		if (Application.isEditor) {
 			obj = GameObject.Find(prefab.name + " Pool");
 			if (obj) {
@@ -42,10 +42,16 @@ public class ObjectPool : MonoBehaviour {
 				}
 			}
 		}
-		*/
+
 		obj = new GameObject(prefab.name + " Pool");
+		DontDestroyOnLoad (obj);
 		pool = obj.AddComponent<ObjectPool>();
 		pool.prefab = prefab;
 		return pool;
+	}
+
+	public void OnDestroy()
+	{
+		Debug.Log ("Destroying Pool");
 	}
 }
